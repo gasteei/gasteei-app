@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:gasteei/widgets/censure.dart';
 
 class CardMonthView extends StatelessWidget {
-  final String expanse;
+  final String value;
   final String headline2;
-  final String headline3;
+  final String detailTile;
   final bool canSee;
-  final String titleFirstText;
-  final String titleSecondText;
-  const CardMonthView(
-      {super.key,
-      required this.expanse,
-      required this.headline2,
-      required this.headline3,
-      required this.canSee,
-      required this.titleFirstText,
-      required this.titleSecondText});
+  final String month;
+  final bool isActualMonth;
+
+  const CardMonthView({
+    super.key,
+    required this.value,
+    required this.headline2,
+    required this.detailTile,
+    required this.canSee,
+    required this.month,
+    required this.isActualMonth,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +31,9 @@ class CardMonthView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // const Gap(9),
-                // Text(
-                //   titleFirstText,
-                //   style: Theme.of(context).textTheme.headline2,
-                // ),
                 const Gap(10),
                 Text(
-                  titleSecondText,
+                  month,
                   style: Theme.of(context).textTheme.headline2?.copyWith(
                         fontWeight: FontWeight.normal,
                       ),
@@ -48,31 +44,49 @@ class CardMonthView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
               height: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Theme.of(context).colorScheme.onPrimary,
-                    Theme.of(context).colorScheme.onPrimary.withOpacity(0.71),
-                  ],
-                ),
-              ),
+              decoration: isActualMonth
+                  ? BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          const Color(0xFF0583F2),
+                          const Color(0xFF0583F2).withOpacity(0.70),
+                        ],
+                      ),
+                    )
+                  : BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Theme.of(context).colorScheme.onPrimary,
+                          Theme.of(context).colorScheme.onPrimary.withOpacity(0.71),
+                        ],
+                      ),
+                    ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     children: [
+                      const Gap(10),
                       canSee
                           ? Text(
-                              expanse,
+                              value,
                               style: Theme.of(context).textTheme.headline1?.copyWith(
                                     color: Colors.white,
+                                    fontSize: 35,
                                   ),
                             )
-                          : const Censure(),
-                      canSee ? const Gap(25) : const Gap(35),
+                          : Text("••••••••",
+                              style: Theme.of(context).textTheme.headline1?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 35,
+                                  )),
+                      const Gap(20),
                       Text(
                         headline2,
                         style: Theme.of(context).textTheme.headline3?.copyWith(
@@ -80,7 +94,7 @@ class CardMonthView extends StatelessWidget {
                             ),
                       ),
                       Text(
-                        headline3,
+                        detailTile,
                         style: Theme.of(context).textTheme.headline3?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
