@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gasteei/provider/dark_theme_provider.dart';
+import 'package:gasteei/core/app_state.dart';
 import 'package:gasteei/screens/setting_view_screen.dart';
 import 'package:gasteei/themes/theme_data.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color(0xFFF2F2F2),
-    statusBarIconBrightness: Brightness.dark,
-    statusBarBrightness: Brightness.dark,
-  ));
-
   runApp(const MyApp());
 }
 
@@ -23,16 +17,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+  AppState appState = AppState();
 
   void getCurrentAppTheme() async {
-    themeChangeProvider.setDarkTheme = await themeChangeProvider.darkThemePrefs.getTheme();
+    appState.setDarkTheme = await appState.darkThemePrefs.getTheme();
   }
 
   @override
   void initState() {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     getCurrentAppTheme();
     super.initState();
   }
@@ -41,18 +34,23 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) {
-          return themeChangeProvider;
-        }),
+        ChangeNotifierProvider(create: (context) => AppState()),
       ],
-      child: Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {
+      child: Consumer<AppState>(builder: (context, appState, child) {
         return MaterialApp(
           title: 'Flutter Demo',
-          theme: Styles.themeData(themeProvider.getDarkTheme, context),
+          theme: Styles.themeData(appState.getDarkTheme, context),
           home: const SettingViewScreen(),
           debugShowCheckedModeBanner: false,
         );
       }),
     );
+  }
+}
+
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
   }
 }
