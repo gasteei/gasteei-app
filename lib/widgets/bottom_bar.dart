@@ -43,7 +43,7 @@ class BottomNavigationBarBlur extends StatelessWidget {
                   ),
                   items: const [
                     BottomNavigationBarItem(icon: Icon(CustomIcons.home, size: 24), label: "Home"),
-                    BottomNavigationBarItem(icon: Icon(Icons.list_rounded, size: 34), label: "Expanses"),
+                    BottomNavigationBarItem(icon: Icon(Icons.list_rounded, size: 34), label: "Expenses"),
                     BottomNavigationBarItem(icon: Icon(CustomIcons.barChart, size: 24), label: "BarChart"),
                     BottomNavigationBarItem(icon: Icon(CustomIcons.profile, size: 24), label: "Profile"),
                   ],
