@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gasteei/provider/dark_theme_provider.dart';
+import 'package:gasteei/core/app_state.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -12,19 +12,19 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final themeState = Provider.of<DarkThemeProvider>(context);
+    final appState = Provider.of<AppState>(context);
 
     return Scaffold(
       body: Center(
         child: SwitchListTile(
           title: const Text("Theme"),
-          secondary: Icon(themeState.getDarkTheme ? Icons.dark_mode_outlined : Icons.light_mode_outlined),
+          secondary: Icon(appState.getDarkTheme ? Icons.dark_mode_outlined : Icons.light_mode_outlined),
           onChanged: (bool value) {
             setState(() {
-              themeState.setDarkTheme = value;
+              appState.setDarkTheme = value;
             });
           },
-          value: themeState.getDarkTheme,
+          value: appState.getDarkTheme,
         ),
       ),
     );
