@@ -4,11 +4,11 @@ import 'package:gap/gap.dart';
 import 'package:gasteei/blocs/expense_bloc.dart';
 import 'package:gasteei/blocs/expense_state.dart';
 import 'package:gasteei/icons/custom_icons.dart';
-import 'package:gasteei/widgets/expanses/list_row_expense.dart';
+import 'package:gasteei/screens/expenses/widgets/list_row_expense.dart';
 import 'package:intl/intl.dart';
 
-import '../blocs/expense_event.dart';
-import '../models/expense.dart';
+import '../../blocs/expense_event.dart';
+import '../../models/expense.dart';
 
 class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen({super.key});

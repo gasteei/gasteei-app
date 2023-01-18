@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gasteei/screens/expenses_screen.dart';
+import 'package:gasteei/screens/expenses/expenses_screen.dart';
 import 'package:gasteei/screens/home/home_screen.dart';
 import 'package:gasteei/screens/profile_screen.dart';
 import 'package:gasteei/widgets/bottom_bar.dart';
