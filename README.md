@@ -1,16 +1,20 @@
-# gasteei
+# Gasteei
 
-A new Flutter project.
+An app in flutter that lets you manage your expenses, revenus and plannings.
 
-## Getting Started
+## Screens
 
-This project is a starting point for a Flutter application.
+### Home
 
-A few resources to get you started if this is your first Flutter project:
+You will be able to view / create
+- Your total of expenses for every month of a given year.
+- Your revenues for every month of a given year.
+- Your planning / goals
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### History
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+It will be possible to see and edit all the details of your expenses for each month of a year.
+
+### BarChart
+
+### Profile
